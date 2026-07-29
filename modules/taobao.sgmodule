@@ -1,0 +1,9 @@
+#!name=开屏去广告 - 淘宝
+#!desc=仅处理淘宝图片和视频开屏接口；异常时原样放行
+#!system=ios
+
+[Script]
+淘宝_开屏去广告 = type=http-response, requires-body=true, max-size=0, pattern=^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(?:cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get)(?:[/?]|$), script-path=https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scripts/splash-blocker.js, timeout=10
+
+[MITM]
+hostname = %APPEND% guide-acs.m.taobao.com

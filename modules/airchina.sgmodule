@@ -1,0 +1,9 @@
+#!name=开屏去广告 - 中国国航
+#!desc=仅处理 procedure=queryOpenScreenAd；其他网关服务原样放行
+#!system=ios
+
+[Script]
+中国国航_开屏去广告 = type=http-response, requires-body=false, pattern=^https?:\/\/m\.airchina\.com\.cn\/airchina\/gateway\/v\d+(?:\.\d+)*\/api\/services(?:[/?]|$), script-path=https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scripts/splash-blocker.js, timeout=10
+
+[MITM]
+hostname = %APPEND% m.airchina.com.cn

@@ -1,0 +1,9 @@
+#!name=开屏去广告 - 滴滴
+#!desc=仅处理滴滴已知启动或活动广告入口；不修改叫车、订单和个人中心接口
+#!system=ios
+
+[Script]
+滴滴_开屏去广告 = type=http-response, requires-body=true, max-size=0, pattern=^https?:\/\/(?:hd\.xiaojukeji\.com\/d(?:[/?]|$)|res\.xiaojukeji\.com\/resapi\/activity\/(?:m|xp)get(?:[/?]|$)), script-path=https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scripts/splash-blocker.js, timeout=10
+
+[MITM]
+hostname = %APPEND% hd.xiaojukeji.com, res.xiaojukeji.com

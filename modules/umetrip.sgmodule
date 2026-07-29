@@ -1,0 +1,10 @@
+#!name=开屏去广告 - 航旅纵横
+#!desc=仅处理航旅纵横已知开屏广告位；异常时原样放行
+#!system=ios
+
+[Script]
+航旅纵横_开屏广告位 = type=http-response, requires-body=false, pattern=^https?:\/\/(?:umerp\.umetrip\.com(?:\.cn)?|home\.umetrip\.com|bkclient\.umetrip\.com\.cn)\/gateway\/api\/umetrip\/native(?:[/?]|$), script-path=https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scripts/splash-blocker.js, timeout=10
+航旅纵横_开屏广告资源 = type=http-response, requires-body=false, pattern=^https?:\/\/oss\.umetrip\.com\/fs\/advert\/polite(?:[/?]|$), script-path=https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scripts/splash-blocker.js, timeout=10
+
+[MITM]
+hostname = %APPEND% umerp.umetrip.com, umerp.umetrip.com.cn, home.umetrip.com, bkclient.umetrip.com.cn, oss.umetrip.com

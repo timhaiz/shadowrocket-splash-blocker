@@ -1,0 +1,9 @@
+#!name=开屏去广告 - 京东
+#!desc=仅处理 functionId=start 的开屏响应；其他京东接口原样放行
+#!system=ios
+
+[Script]
+京东_开屏去广告 = type=http-response, requires-body=true, max-size=0, pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?(?=[^#]*\bfunctionId=start(?:&|$)), script-path=https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scripts/splash-blocker.js, timeout=10
+
+[MITM]
+hostname = %APPEND% api.m.jd.com
