@@ -214,6 +214,20 @@ test("unknown URLs and empty responses pass through", () => {
 
 test("modules are independent, use the configured Raw URL and have minimal MITM hosts", () => {
   const expectedHosts = {
+    "all-in-one.sgmodule": [
+      "amap-aos-info-nogw.amap.com",
+      "api.m.jd.com",
+      "bkclient.umetrip.com.cn",
+      "guide-acs.m.taobao.com",
+      "hd.xiaojukeji.com",
+      "home.umetrip.com",
+      "m*.amap.com",
+      "m.airchina.com.cn",
+      "oss.umetrip.com",
+      "res.xiaojukeji.com",
+      "umerp.umetrip.com",
+      "umerp.umetrip.com.cn"
+    ],
     "airchina.sgmodule": ["m.airchina.com.cn"],
     "amap.sgmodule": ["amap-aos-info-nogw.amap.com", "m*.amap.com"],
     "didi.sgmodule": ["hd.xiaojukeji.com", "res.xiaojukeji.com"],
@@ -250,6 +264,20 @@ test("modules are independent, use the configured Raw URL and have minimal MITM 
 
 test("module URL patterns compile and stay inside the intended endpoint scope", () => {
   const samples = {
+    "all-in-one.sgmodule": {
+      matches: [
+        "https://m5.amap.com/ws/shield/dsp/app/startup/init?channel=ios",
+        "https://home.umetrip.com/gateway/api/umetrip/native",
+        "https://m.airchina.com.cn/airchina/gateway/v2.1/api/services",
+        "https://api.m.jd.com/client.action?functionId=start",
+        "https://guide-acs.m.taobao.com/gw/mtop.taobao.cloudvideo.video.query/1.0/",
+        "https://res.xiaojukeji.com/resapi/activity/xpget"
+      ],
+      rejects: [
+        "https://m5.amap.com/ws/bus/plan/integrate",
+        "https://conf.diditaxi.com.cn/homepage/v1/core"
+      ]
+    },
     "airchina.sgmodule": {
       matches: ["https://m.airchina.com.cn/airchina/gateway/v2.1/api/services"],
       rejects: ["https://m.airchina.com.cn/ac/rn/product/version"]

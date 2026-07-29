@@ -7,6 +7,7 @@
 ```text
 shadowrocket-splash-blocker/
 ├── modules/
+│   ├── all-in-one.sgmodule
 │   ├── airchina.sgmodule
 │   ├── amap.sgmodule
 │   ├── didi.sgmodule
@@ -33,6 +34,7 @@ https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/scrip
 可直接使用以下模块地址：
 
 ```text
+https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modules/all-in-one.sgmodule
 https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modules/amap.sgmodule
 https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modules/umetrip.sgmodule
 https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modules/airchina.sgmodule
@@ -41,7 +43,7 @@ https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modul
 https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modules/didi.sgmodule
 ```
 
-如果只是安装使用，可跳到“安装并信任 HTTPS 解密证书”。
+`all-in-one.sgmodule` 是一次导入六个 App 的合并版。合并版与六个独立模块二选一，不要同时启用，否则同一响应可能被重复处理。如果只是安装使用，可跳到“安装并信任 HTTPS 解密证书”。
 
 ## 2. 复刻后自行托管
 
@@ -79,6 +81,11 @@ script-path=https://raw.githubusercontent.com/example/repo/main/shadowrocket-spl
 2. 打开 iOS“设置”，安装已下载的描述文件。
 3. 前往“设置 → 通用 → 关于本机 → 证书信任设置”，为该 CA 开启完全信任。
 4. 回到 Shadowrocket，确认 HTTPS 解密已启用。
+5. Shadowrocket 部分版本不会读取模块的 `[MITM]` 段。使用合并版时，在“HTTPS 解密”的域名列表中手动粘贴：
+
+```text
+amap-aos-info-nogw.amap.com, m*.amap.com, umerp.umetrip.com, umerp.umetrip.com.cn, home.umetrip.com, bkclient.umetrip.com.cn, oss.umetrip.com, m.airchina.com.cn, api.m.jd.com, guide-acs.m.taobao.com, hd.xiaojukeji.com, res.xiaojukeji.com
+```
 
 请勿导出、共享或上传 CA 的私钥。每个模块只声明该 App 所需的最小 MITM 域名；停用模块后，对应域名也不再需要解密。
 
@@ -90,7 +97,13 @@ script-path=https://raw.githubusercontent.com/example/repo/main/shadowrocket-spl
 <你的 Raw 基础地址>/modules/amap.sgmodule
 ```
 
-建议按照以下顺序逐个导入、启用和验证，不要第一次就同时打开全部模块：
+如果希望一次导入全部，直接添加：
+
+```text
+https://raw.githubusercontent.com/timhaiz/shadowrocket-splash-blocker/main/modules/all-in-one.sgmodule
+```
+
+如果希望逐个开关和排查，则按照以下顺序导入，不要再启用合并版：
 
 1. 高德地图 `amap.sgmodule`
 2. 航旅纵横 `umetrip.sgmodule`
